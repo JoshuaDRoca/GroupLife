@@ -14,6 +14,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.DragInteraction
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -48,6 +49,7 @@ import com.example.grouplife11.ui.HomeScreen
 import com.example.grouplife11.ui.ProfileScreen
 import com.example.grouplife11.ui.StartScreen
 import com.example.grouplife11.ui.AddScreen
+import com.example.grouplife11.ui.SignUp
 import com.example.grouplife11.ui.theme.GroupLife11Theme
 import com.google.android.libraries.identity.googleid.GetGoogleIdOption
 import com.google.android.libraries.identity.googleid.GetSignInWithGoogleOption
@@ -61,7 +63,8 @@ enum class Screens() {
     StartScreen,
     ProfileScreen,
     HomeScreen,
-    AddScreen
+    AddScreen,
+    SignUp
 }
 
 @Composable
@@ -73,7 +76,9 @@ fun GroupLifeApp() {
         startDestination = Screens.StartScreen.name
     ) {
         composable(route = Screens.StartScreen.name) {
-            StartScreen(onSignInClicked = {navController.navigate(Screens.HomeScreen.name)})
+            //old...
+            //StartScreen(onSignInClicked = {navController.navigate(Screens.HomeScreen.name)})
+            StartScreen(navController)
         }
         composable(route = Screens.ProfileScreen.name) {
             ProfileScreen()
@@ -83,6 +88,9 @@ fun GroupLifeApp() {
         }
         composable (route = Screens.AddScreen.name) {
             AddScreen(navController)
+        }
+        composable (route = Screens.SignUp.name) {
+            SignUp(navController)
         }
     }
 }

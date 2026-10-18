@@ -17,6 +17,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
@@ -31,6 +32,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.example.grouplife11.Event
 import com.example.grouplife11.FirebaseDB
+import com.example.grouplife11.Screens
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -107,6 +109,16 @@ fun AddScreen (
             }, modifier = Modifier.fillMaxWidth()
             ) {
                 Text("Save")
+            }
+
+            Spacer(Modifier.height(16.dp))
+
+            TextButton(onClick = {
+                navController.navigate(Screens.HomeScreen.name) {
+                    popUpTo(Screens.AddScreen.name) { inclusive = true }
+                }
+            }) {
+                Text("Back to Home Screen.")
             }
 
         }

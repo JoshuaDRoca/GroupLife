@@ -49,6 +49,7 @@ import com.example.grouplife11.ui.HomeScreen
 import com.example.grouplife11.ui.ProfileScreen
 import com.example.grouplife11.ui.StartScreen
 import com.example.grouplife11.ui.AddScreen
+import com.example.grouplife11.ui.DetailScreen
 import com.example.grouplife11.ui.SignUp
 import com.example.grouplife11.ui.theme.GroupLife11Theme
 import com.google.android.libraries.identity.googleid.GetGoogleIdOption
@@ -64,7 +65,8 @@ enum class Screens() {
     ProfileScreen,
     HomeScreen,
     AddScreen,
-    SignUp
+    SignUp,
+    DetailScreen
 }
 
 @Composable
@@ -81,7 +83,7 @@ fun GroupLifeApp() {
             StartScreen(navController)
         }
         composable(route = Screens.ProfileScreen.name) {
-            ProfileScreen()
+            ProfileScreen(navController)
         }
         composable (route = Screens.HomeScreen.name) {
             HomeScreen(navController)
@@ -91,6 +93,9 @@ fun GroupLifeApp() {
         }
         composable (route = Screens.SignUp.name) {
             SignUp(navController)
+        }
+        composable (route = Screens.DetailScreen.name) {
+            DetailScreen(navController)
         }
     }
 }

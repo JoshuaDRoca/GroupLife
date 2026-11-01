@@ -6,17 +6,18 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
 object FirebaseDB {
-    private val db = FirebaseDatabase.getInstance().getReference("events")
+    private val db_events = FirebaseDatabase.getInstance().getReference("events")
+//    private val db_users = FirebaseDatabase.getInstance().getReference("users")
 
     fun addEvent(event: Event) {
-        val id = db.push().key!!
-        db.child(id).setValue(event.copy(id = id))
+        val id = db_events.push().key!!
+        db_events.child(id).setValue(event.copy(id = id))
     }
 
     fun getEvents(onDataChange: (List<Event>) -> Unit) {
-        db.addValueEventListener(object: ValueEventListener {
+        db_events.addValueEventListener(object: ValueEventListener {
 
-            //retrieve all available events from current snapshot of the db
+            //retrieve all available events from current snapshot of the database
             override fun onDataChange(snapshot: DataSnapshot) {
                 val eventList = mutableListOf<Event>()
                 snapshot.children.forEach {
@@ -26,7 +27,7 @@ object FirebaseDB {
             }
 
             override fun onCancelled(error: DatabaseError) {
-                // handles db errors, leaving empty for now.
+                // handles database errors, leaving empty for now.
             }
 
         })
